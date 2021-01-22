@@ -180,21 +180,15 @@ public class DummyInvocationUtils {
 			return new CacheKey<T>(type, arguments);
 		}
 
-		public Class<T> getType() {
-			return this.type;
-		}
-
-		public Object[] getArguments() {
-			return this.arguments;
-		}
-
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(@Nullable Object o) {
 
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (!(o instanceof CacheKey))
+			}
+			if (!(o instanceof CacheKey)) {
 				return false;
+			}
 			CacheKey<?> cacheKey = (CacheKey<?>) o;
 			return Objects.equals(this.type, cacheKey.type) && Arrays.equals(this.arguments, cacheKey.arguments);
 		}
@@ -207,6 +201,7 @@ public class DummyInvocationUtils {
 			return result;
 		}
 
+		@Override
 		public String toString() {
 
 			return "DummyInvocationUtils.CacheKey(type=" + this.type + ", arguments=" + Arrays.deepToString(this.arguments)
@@ -244,12 +239,14 @@ public class DummyInvocationUtils {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(@Nullable Object o) {
 
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (!(o instanceof SimpleMethodInvocation))
+			}
+			if (!(o instanceof SimpleMethodInvocation)) {
 				return false;
+			}
 			SimpleMethodInvocation that = (SimpleMethodInvocation) o;
 			return Objects.equals(this.targetType, that.targetType) && Objects.equals(this.method, that.method)
 					&& Arrays.equals(this.arguments, that.arguments);
@@ -263,6 +260,7 @@ public class DummyInvocationUtils {
 			return result;
 		}
 
+		@Override
 		public String toString() {
 
 			return "DummyInvocationUtils.SimpleMethodInvocation(targetType=" + this.targetType + ", method=" + this.method
